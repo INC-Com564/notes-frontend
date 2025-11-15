@@ -4,9 +4,16 @@ import App from "./App.jsx";
 import { AuthProvider } from "react-oidc-context";
 import { WebStorageStateStore } from "oidc-client-ts";
 
+// Clear any stale auth state on initial load
+if (window.location.search.includes('error=')) {
+  localStorage.clear();
+  window.location.href = '/';
+}
+
 const cognitoAuthConfig = {
   authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_GCkIFj9j3",
   client_id: "3kgv6ai7hmnm8d3n7mlhit70u",
+  client_secret: "iag3bek7jq52q7ugv7iab102obkp0br4eh0p3060j2dm6apj4sd",
   redirect_uri: "http://localhost:5173/",
   post_logout_redirect_uri: "http://localhost:5173/",
   response_type: "code",

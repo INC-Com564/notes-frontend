@@ -1,4 +1,5 @@
 import { useAuth } from "react-oidc-context";
+import Notes from "./pages/Notes";
 
 export default function App() {
   const auth = useAuth();
@@ -17,8 +18,11 @@ export default function App() {
 
   return (
     <div style={{padding: 24}}>
-      <p>Hello, {auth.user?.profile?.email || "user"}</p>
-      <button onClick={() => auth.signoutRedirect()}>Sign Out</button>
+      <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16}}>
+        <p>Hello, {auth.user?.profile?.email || "user"}</p>
+        <button onClick={() => auth.signoutRedirect()}>Sign Out</button>
+      </div>
+      <Notes />
     </div>
   );
 }
